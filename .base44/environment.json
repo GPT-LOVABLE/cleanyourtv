@@ -1,0 +1,7 @@
+{
+  "previewPort": 3000,
+  "healthPath": "/",
+  "startCommand": "docker compose -f docker-compose.base44.yml up -d --build",
+  "notes": "Not a web app: an Android TV launcher (launcher/, Gradle + Android SDK, not runnable here) plus Python ADB tools (tools/). The preview service renders a read-only page from the repository's own Markdown tables and screenshots; the tools service holds tools/venv with tools/requirements.txt installed for the unittest suite.",
+  "secrets": []
+}

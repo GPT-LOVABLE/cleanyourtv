@@ -173,3 +173,14 @@ Never do these in a PR:
 Questions go to [GitHub Discussions](https://github.com/Gathin23/cleanyourtv/discussions); bugs, TV lists and
 ideas that need a launcher change or a new dependency go to an issue first, with the templates in
 `.github/ISSUE_TEMPLATE/`.
+
+## Base44 sandbox (development environment only)
+
+Not part of the project, and never part of a contribution to it. `docker-compose.base44.yml` runs two
+services: `preview`, the read-only page on port 3000 that Base44's sandbox shows (built from the README
+tables and screenshots by `.base44/preview/server.py`), and `tools`, a Python container holding
+`tools/venv` with `tools/requirements.txt` installed. Run the suite the way CI does with
+`docker compose -f docker-compose.base44.yml exec -T tools tools/venv/bin/python -m unittest discover -s tests`
+(1343 tests, ~1 min). Nothing here needs a credential: the only value the tools read is `TV_HOST`, a TV on
+the user's own LAN, which the sandbox cannot reach — so `launcher/` (JDK 17 + Android SDK 34) and every
+real ADB run stay outside this environment. `.base44/README.md` has the details.
